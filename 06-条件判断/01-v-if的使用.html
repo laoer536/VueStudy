@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-if</title>
+</head>
+<body>
+
+<div id="app">
+  <!--v-if可以控制对象是否被渲染显示出来-->
+  <h2 v-if="true">{{message}}</h2>
+  <h2 v-if="false">{{message}}</h2>     <!--h2标签里面的所有内容将不会显示  当然这里很少-->
+  <h2 v-if="isShow">{{message}}</h2>      <!--定义变量的方式来实现-->
+
+
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊',
+      isShow:true
+    }
+  })
+</script>
+
+</body>
+</html>

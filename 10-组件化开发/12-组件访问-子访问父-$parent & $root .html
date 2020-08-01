@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn></cpn>
+</div>
+
+<template id="cpn">  <!--子组件-->
+  <ccpn></ccpn>
+</template>
+
+<template id="ccpn">    <!--子子组件(子组件的子组件)-->
+  <div>
+    <h2>我是子组件</h2>
+    <button @click="btnClick">按钮</button>
+  </div>
+</template>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({     /*Vue是父组件*/
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    components: {
+      cpn : {
+        template: '#cpn',
+        data(){
+          return {
+            name: '我是cpn组件的name'
+          }
+        },
+        methods: {
+          /*btnClick() {
+            //(1)   $parent
+            console.log(this.$parent);    创建了子子组件后才注释掉的
+          }*/
+        },
+        components: {
+          ccpn: {
+            template: '#ccpn',
+            methods: {
+              btnClick() {
+                //(1)   $parent  (组件复用性不强  很少用)
+                //console.log(this.$parent);
+                //console.log(this.$parent.name);   访问他的父组件(cpn)里面的内容
+
+                //(2)  访问根组件  $root
+                console.log(this.$root.message);  /*直接访问根组件(Vue)的内容*/
+              }
+            }
+          }
+        }
+      }
+    }
+
+  })
+</script>  <!--关系：  Vue → cpn → ccpn-->
+
+</body>
+</html>

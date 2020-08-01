@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>对象</title>
+</head>
+<body>
+
+<div id="app">
+  <h2 v-bind:style="{fontSize:'10px'}">{{message}}</h2>      <!--就是<h2 v-bind:style="{key(属性名):value（属性值）}">{{message}}</h2>-->  <!--必须加单引号，不然Vue会视50px为变量而出错-->
+  <h2 v-bind:style="{fontSize:finalSize}">{{message}}</h2>      <!--用变量的方法去实现-->
+  <h2 v-bind:style="{fontSize:finalSize2+'px'}">{{message}}</h2>     <!--用变量和表达式的方法去实现-->
+  <h2 v-bind:style="{fontSize:finalSize2+'px',color:finalColor}">{{message}}</h2>     <!--添加颜色-->
+  <h2 v-bind:style="getStyles()">{{message}}</h2>     <!--用函数的方法实现上面的功能-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊',
+      finalSize:'20px',
+      finalSize2:40,
+      finalColor:'red'     /* 这里必须加单引号，颜色没有单位*/
+    },
+    methods:{
+      getStyles:function () {
+        return {fontSize:this.finalSize2+'px',color:this.finalColor}
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

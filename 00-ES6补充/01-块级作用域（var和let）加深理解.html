@@ -1,0 +1,59 @@
+<!DOCTYPE html>   <!--for if 没有作用域 function有  所以在ES6之前这两个函数是要借助function来实现功能的  ES6引入了let 就让if for 有了作用域 就可以不用function了-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>块级作用域</title>
+</head>
+<body>
+
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<button>按钮4</button>
+<button>按钮5</button>
+
+<script>      /*1.变量作用域：变量在什么范围内是可用。*/
+  /*{var name = 'LiuJie';
+  console.log(name);
+  }
+  console.log(name);      /!*发现外面也是可以使用的，它是没有块级作用域的      没有块级作用域会引起问题*!/
+
+  var func;
+  if (true){      /!*if没有块级作用域引起的问题*!/
+    var name = 'LiuJie';
+    func = function () {
+      console.log(name)
+    }
+    /!*func()*!/
+  }
+  /!*name = 'ZhouXingchi'      发现别人可更改原name
+  func()*!/
+  /!*console.log(name);*!/*/
+
+  var btns = document.getElementsByTagName('button');
+  for (var i=0;i<btns.length;i++){       /*if没有块级作用域引起的问题*/
+    btns[i].addEventListener('click',function () {
+      console.log('第'+i+'个按钮被点击');      /*乱码文字为——'第'+i+'个按钮被点击'*/  /*引用的是前面被改掉的i，所以i=0变成了i=5，造成的结果就是点击每一个按钮打印出的信息是第5个按钮被点击*/
+    })      /*因为一直用的是上面的i，i的最终结果是5，所以直接点击每一个按钮显示的都是第5个按钮被点击*/
+  }
+
+  var btns = document.getElementsByTagName('button');
+  for (var i=0;i<btns.length;i++){       /*针对if没有块级引起的问题的解决办法用闭包——就是太复杂*/ /*为什么闭包可以解决问题——因为函数是一个作用域，只使用自己的变量，*/
+    (function (i) {     /*函数里面有属于函数自己的i*/  /*另外function是有自己的作用域的*/
+      btns[i].addEventListener('click',function () {
+        console.log('第'+i+'个按钮被点击');      /*乱码文字为——'第'+i+'个按钮被点击'*/  /*i先被改掉了，所以i=0变成了i=5，造成的结果就是点击第一个按钮打印出的信息是第5个按钮被点击*/
+      })
+    })(i)     /*调用马上传给函数小括号里面的i*/
+    }
+
+  var btns = document.getElementsByTagName('button');
+  for (let i=0;i<btns.length;i++){       /*引入let 解决问题  let就把大括号里面的内容加上每次的i当成了一个作用域 */
+    btns[i].addEventListener('click',function () {
+      console.log('第'+i+'个按钮被点击');       /*乱码文字为——'第'+i+'个按钮被点击'*/
+    })
+  }
+
+</script>   <!--总结：ES5中var是没有块级作用域的 ES6中let是有块级作用域的  以if for为例-->
+
+</body>
+</html>

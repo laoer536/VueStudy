@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-text</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>{{message}}</h2>    <!--Mustache语法实现显示-->
+  <h2 v-text="message"></h2>      <!--v-text语法实现显示-->
+
+  <h2>{{message}}，刘杰</h2>
+  <h2 v-text="message">，刘杰</h2>     <!--Mustache语法更加灵活实用，v-text会覆盖h2中的内容-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    }
+  })
+</script>
+
+</body>
+</html>

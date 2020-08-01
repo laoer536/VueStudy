@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <my-cpn></my-cpn>
+  <my-cpn2></my-cpn2>
+</div>
+
+<!--1  script标签穿件模板内容，注意类型必须是text/x-template-->
+<script type="text/x-template" id="cpnC1">
+  <div>
+    <h2>标题</h2>
+    <p>我是内容：以偶的购房感受到hi甘肃等</p>
+    <p>我是内容：刘杰太瓜</p>
+    <p>我是内容：老二的冥想与发呆</p>
+  </div>
+</script>   <!--创建模板内容-->
+
+<!--2 template标签-->
+<template id="cpnC2">     <!--Vue中规定，如果template里面包含了很多标签 需要用div包起来-->
+  <div>
+    <h2>标题2</h2>
+    <p>我是内容：《老二历险记》</p>
+    <p>我是内容：刘杰升级打怪</p>
+    <p>我是内容：6666666</p>
+  </div>
+</template>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+
+  /*Vue.component('my-cpn',{
+    template: `
+      <div>
+          <h2>标题</h2>
+          <p>我是内容：以偶的购房感受到hi甘肃等</p>
+          <p>我是内容：刘杰太瓜</p>
+          <p>我是内容：老二的冥想与发呆</p>
+      </div>`      /!*语法糖的方式一步就完成创建构造器和注册  内部帮你做了extend*!/
+  })*/
+
+  Vue.component('my-cpn',{template:'#cpnC1'})   /*引用模板内容*/    /*上面是原来的语法糖写法*/
+  Vue.component('my-cpn2',{template:'#cpnC2'})  /*引用模板内容*/    /*上面是原来的语法糖写法*/
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    }
+  })
+</script>
+
+</body>
+</html>

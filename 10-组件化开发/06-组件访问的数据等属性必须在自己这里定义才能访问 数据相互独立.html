@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+</div>
+
+<!--2 template标签-->
+<template id="cpnC1">
+  <div>
+  <h2>{{title}}</h2>
+  <p>我是内容：以偶的购房感受到hi甘肃等</p>
+  <p>我是内容：刘杰太瓜</p>
+  <p>我是内容：老二的冥想与发呆</p>
+
+    <h2>当前计数：{{counter}}</h2>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+  </div>      <!--div分开无效 必须全部包括？？？-->
+</template>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  Vue.component('my-cpn',{template:'#cpnC1',    /*组件里面还可以有methods等属性 data特殊 必须是一个函数  函数是每次使用都产生新的对象 所以连续使用他们之间也不共用数据  是相互独立的*/
+  data(){
+    return {    /*组件定义的数据不能像Vue实例中那样直接是一个对象(里面有数据)传入*/ /*这里必须是一个函数其中用return返回一个对象来实现*/
+      title: '我是数据中的标题',
+      counter : 0
+    }
+  },
+    methods: {
+    increment(){
+      this.counter++
+    },
+      decrement(){
+      this.counter--
+      }
+    }
+  })
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    }
+  })
+</script>
+
+</body>
+</html>

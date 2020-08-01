@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <span v-if="isUser">用户账号
+  <input type="text"></span>
+  <span v-else>用户邮箱
+  <input type="text"></span>
+  <button @click="isUser = !isUser">切换类型</button>
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      isUser: true
+    }
+  })
+</script>
+
+</body>
+</html>

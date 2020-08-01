@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<div id="app">
+  <div v-if="books.length">
+  <table>
+    <thead>
+    <tr>
+      <th></th>
+      <th>书籍名称</th>
+      <th>出版日期</th>
+      <th>价格</th>
+      <th>购买数量</th>
+      <th>操作</th>
+    </tr>
+    </thead>      <!--不变的内容-->
+    <tbody>
+    <tr v-for="item in books">
+    <!--<tr v-for="(item,index) in books">-->  <!--实现点击数量增减的函数方法需要用到index参数，所以这里需要搞出来-->
+      <!--<td v-for="value in item">{{value}}</td>   遍历对象item 一般不采用这种 如果对其中的值进行操作会比较麻烦-->
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.data}}</td>
+      <!--<td>{{'¥'+item.price.toFixed(2)}}</td>  &lt;!&ndash;对价格price保留2位小数&ndash;&gt;-->
+      <!--或者用函数的方式-->
+      <!--<td>{{getFinalPrice(item.price)}}</td>-->
+      <!--或者用过滤器-->
+      <td>{{item.price | showPrice}}</td>
+      <td><button @click="item.count--">-</button>{{item.count}}<button @click="item.count++">+</button></td>     <!--实现点击操作的简便方法-->
+      <!--<td><button @click="increment(index)">-</button>{{item.count}}<button @click="decrement(index) v-bind:disabled = "item.count <= 1">+</button></td>-->  <!--实现点击操作的函数方法-->  <!--另外通过绑定按钮属性disabled实现购买数量不能减为比1小的操作-->
+      <td><button @click="removeHandle(index)">移除</button></td>
+    </tr>
+    </tbody>
+  </table>
+  <h2>总价格： {{totalPrice | showPrice}}</h2>  <!--用过滤器加样式-->
+  </div>
+  <h2 v-else>购物车为空</h2>
+</div>
+<script src="../vuejs/vue.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

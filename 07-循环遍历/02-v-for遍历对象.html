@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>遍历对象</title>
+</head>
+<body>
+
+<div id="app">
+  <!--在遍历对象的过程中，如果只是获取值，则-->
+  <ul>
+    <li v-for="item in info">{{item}}</li>
+  </ul>
+
+  <!--在遍历过程中如果既想获取值又想获取值所对应的名字 可以获取key和value 格式： (value,key)-->
+  <ul>
+    <li v-for="(value,key) in info">{{value}}-{{key}}</li>
+  </ul>
+
+  <!--在遍历过程中如果既想获取值又想获取值所对应的名字和它是第几个属性 可以获取key和value和index 格式： (value,key,index)-->
+  <ul>
+    <li v-for="(value,key,index) in info">{{value}}-{{key}}-{{index}}</li>
+  </ul>
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      info: {
+        name: '老二',
+        age: 22,
+        height: 1.73
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

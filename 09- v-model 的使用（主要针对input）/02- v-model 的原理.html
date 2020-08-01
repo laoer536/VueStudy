@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>原理</title>
+</head>
+<body>
+
+<div id="app">
+  <!--<input type="text" v-model="message">-->
+  <input type="text" v-bind:value="message" v-on:input="valueChange">   <!--v-bind实现服务器的动态绑定 v-on监听input事件 实现用户的动态绑定 两个合起来就是双向绑定 即v-model的功能-->
+  <input type="text" v-bind:value="message" v-on:input="$event.targe.value">    <!--不用函数 用$ 实现-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    methods: {
+      valueChange(event){
+        this.message = 'event.target.value';
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

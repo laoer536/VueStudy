@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>全局组件和局部组件</title>
+</head>
+<body>
+
+<div id="app">      <!--实际开发中一般都用局部变量 而且一个项目中一般只有一个Vue实例 即div-->
+  <cpn2></cpn2>   <!--不生效-->
+  <cpn></cpn>  <!-- 生效-->
+</div>
+
+<div id="app2">
+  <cpn2></cpn2>   <!--生效-->
+  <cpn></cpn>  <!-- 不生效-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  //1创建组件构造器对象
+  const cpnConstructor = Vue.extend({
+    template: `
+      <div>
+          <h2>标题</h2>
+          <p>我是内容：以偶的购房感受到hi甘肃等</p>
+          <p>我是内容：刘杰太瓜</p>
+          <p>我是内容：老二的冥想与发呆</p>
+       </div>
+           `
+  })
+  //2注册组件(注册后就是全局组件，可以在多个Vue的实例下面使用)
+  Vue.component('my-cpn',cpnConstructor)
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    components: {
+      cpn: cpnConstructor   /*cpn使用时的标签名 cpnConstructor为组件构造器*/
+    }
+  });
+
+  const app2 = new Vue({
+    el:'#app2',
+    data:{
+      message:'你好啊'
+    },
+    components: {
+      cpn2: cpnConstructor   /*cpn使用时的标签名 cpnConstructor为组件构造器*/
+    }
+  })
+</script>   <!--挂载于那个app下面的组件就只能在对应的div里面使用，这个就是局部组件-->
+
+</body>
+</html>

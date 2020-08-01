@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-bind基本</title>
+</head>
+<body>
+
+<div id="app">
+  <img src="imgURL">
+  <img v-bind:src="imgURL">     <!--对比发现v-bind可以将imgURL视为变量且动态绑定变量中的图片，实现响应式-->
+  <a v-bind:href="aHref">百度一下</a>    <!--同理，不过这个是动态绑定网址-->
+  <br>
+  <a :href="aHref">百度一下</a>     <!--语法糖→v-bind:可以写成: 一样的效果-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊',
+      imgURL:'https://images.pexels.com/photos/4048182/pexels-photo-4048182.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+      aHref:'http://www.baidu.com'
+    }
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>setter和getter</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName2}}</h2>
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      firstName: 'jie',
+      lastName: 'liu'
+    },
+    computed:{
+      fullName2:function () {
+        return this.firstName+' '+this.lastName
+      },     /*简写写法      也是最终演变下来最常用的写法      必须掌握这种 必须掌握这种 必须掌握这种 必须掌握这种 必须掌握这种 必须掌握这种*/
+
+      /*fullName:{
+        set:function () {     set一般不需要实现就是不常用，当它是空的  计算属性一般没有set方法，此时是只读属性
+
+        },
+        get:function () {
+          return 'abc'      /!*这样的话 显示的就只是abc*!/
+        }
+      }*/       /*本身应该的写法*/
+
+      fullName:{
+        /*set:function (newValue) {     一定要用的话 可以这样但是必须要有参数newValue
+          console.log('------',newValue);或者截取
+          const names = newValue.split(' ');
+          this.firstName = names[0];
+          this.lastName = names[1];
+        },*/
+        get:function () {
+          return this.firstName+' '+this.lastName
+        }
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

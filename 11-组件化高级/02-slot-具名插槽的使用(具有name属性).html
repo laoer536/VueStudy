@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn></cpn>   <!--京东顶部栏目-->
+  <!--现在有一个需求 改变3个其中的一个-->
+  <cpn><span>标题</span></cpn>    <!--错误： 替换了没有名字的slot-->
+  <cpn><span slot="center">搜索框</span></cpn>   <!--正确： 只替换了名字为center的slot插槽,且改为了文字类型-->
+  <cpn><button slot="right">转到</button></cpn>   <!--正确： 只替换了名字为right的slot插槽,且改为了button类型-->  <!--综上：可以只改变一个 且内容的类型可以不一样-->
+
+</div>
+
+<template id="cpn">
+  <div>
+    <slot name="left"><span>返回</span></slot>
+    <slot name="center"><input type="text" placeholder="搜索框"></slot>
+    <slot name="right"><span>菜单</span></slot>   <!--加入属性name 就可以实现精确的对接-->
+    <slot>→京东顶部栏</slot>
+  </div>
+</template>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    components: {
+      cpn : {
+        template: '#cpn'
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

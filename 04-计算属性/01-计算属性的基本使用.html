@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>基本使用</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>{{firstName+' '+lastName}}</h2>
+  <h2>{{firstName}} {{lastName}}</h2>
+  <h2>{{getFullName()}}</h2>      <!--引用函数的方式来实现-->
+  <h2>{{fullName}}</h2>     <!--计算属性不需要加小括号--><!--这里fullName是作为一个属性来实现显示的-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      firstName:'jie',
+      lastName:'liu'
+    },
+    computed:{      /*计算属性*/
+      fullName:function () {
+        return this.firstName+' '+this.lastName
+      }     /*计算属性就尽量以属性来定义名字，即这里不定义getFullName*/
+    },
+    methods:{
+      getFullName:function () {     /*方法的名字就尽量体现方法，所以这里函数名fullName就加了一个get*/
+        return this.firstName+' '+this.lastName
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

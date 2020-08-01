@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mustache</title>
+</head>
+<body>
+
+<div id="app">
+  {{message}}     <!--{{}}即Mustache语法 可以显示变量所包含的内容-->
+  <h2>{{message}}</h2>
+  <h2>{{message}},刘杰。</h2>
+  <h2>{{firstname+lastname}}</h2>    <!-- Mustache语法中不仅可以直接写变量，也可以写简单的表达式-->
+  <h2>{{firstname+' '+lastname}}</h2>     <!--加入了空格字符串，实现中间隔开的效果-->
+  <h2>{{firstname}} {{lastname}}</h2>     <!--实现同上一行一样的效果-->
+  <h2>{{number*2}}</h2>
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊',
+      firstname:'jie',
+      lastname:'liu',
+      number:50,
+    }
+  })
+</script>
+
+</body>
+</html>

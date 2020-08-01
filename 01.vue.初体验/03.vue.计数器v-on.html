@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vuejs/vue.js"></script>
+</head>
+<body>
+<h2 style="color: crimson">计数器1</h2>
+<div id="app">
+    <h3>最终数字：{{number}}</h3>
+    <button v-on:click="number++">+</button>
+    <button v-on:click="number--">-</button>
+
+</div>
+<h2 style="background-color: yellow;color: red;width: 50px">对比</h2>
+<h2 style="color: crimson">计数器2</h2>
+<div id="app2">
+    <h3>最终数字：{{number}}</h3>
+    <button @click="add">+</button>  <!--v-on:click 等同于 @click 即v-on:=@-->
+    <button @click="sub">-</button>
+</div>  <!--上面两个div盒子是属于MVVM中的View-->
+
+
+<script>
+
+
+    const app = new Vue({          /* new Vue 就相当于MVVM中的桥梁view model，实现用户事件与数据之间的动态改变，即响应      new Vue中做了很多事情*/
+        el:'#app',
+        data:{
+            number: 0          /* data中的对象*/
+        }
+    })
+</script>
+
+<script>
+    const obj = {number: 0}         /*对于data中的对象还可以这样写 效果一样*/
+    const app2 = new Vue({         /* new Vue就相当于 对 function Vue(option){……}源码的应用*/
+        el:'#app2',
+        data:/*{
+            number: 0
+        }*/obj,          /*data中的对象属于MVVM中的Model*/
+        methods:{           /*可定义一个或多个函数*/
+            add:function () {           /*定义一个名为add的函数，function本意为函数，又object本意为对象*/
+                console.log('add被执行');
+                this.number++           /*数据的引用不同于方式1，一个是可以直接在div中找到变量本身，一个是只能找到函数，而且函数中的变量要在data数据定义中取，this表示当前(变量)*/
+            },
+            sub:function () {           /*定义一个名为sub的函数*/
+                console.log('sub被执行');         /* 功能为发生点击时显示的信息*/
+                this.number--
+            }
+        }
+    })
+</script>
+</body>
+</html>
+
+<!--debug开发版本 release发布版本-->

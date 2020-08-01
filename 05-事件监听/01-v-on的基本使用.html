@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>基本使用</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>{{number}}</h2>
+  <button v-on:click="increment">+</button>
+  <button v-on:click="decrement">-</button>
+
+  <h2>{{number}}</h2>
+  <button @click="increment">+</button>     <!--v-on的语法糖  即改写成 @  click(翻译为点击)监听的是点击事件 如果是其他事件 也可以写其他东西 不一定写click 例如键盘抬起keyup-->
+  <button @click="decrement">-</button>
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      number : 0,
+    },
+    methods:{
+      increment(){
+        this.number++
+      },
+      decrement(){
+        this.number--
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

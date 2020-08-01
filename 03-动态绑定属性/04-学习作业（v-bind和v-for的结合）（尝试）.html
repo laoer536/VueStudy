@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>作业</title>
+
+  <style>
+    .active{
+      color: red;
+    }
+    .line{
+      color: black;
+    }
+  </style>
+
+</head>
+<body>
+
+<!--作业需求：点击列表中的哪一项，那么该项的文字就变成红色-->
+<div id="app">
+ <!-- <ul>
+    <li v-for="m in movies">{{m}}</li>     &lt;!&ndash; 写法就是<li v-for="变量 in 列表"></li>&ndash;&gt;
+  </ul>
+
+  <ul>
+    <li v-bind:class="" v-for="(m.index) in movies"><button>{{m}}</button></li>     &lt;!&ndash; index代表的是数组的下标&ndash;&gt;
+  </ul>-->
+
+  <ul class="line">
+    <li  v-for="m in movies" v-bind:class="{active:isActive,line:isLine}"><button class="active">{{m}}</button></li>
+  </ul>
+
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      isActive:true,
+      isLine:true,
+      movies: ['仙剑奇侠传','霸王别姬','寄生兽','东京食种']
+    },
+    methods:{
+      btnClick:function () {
+        this.isActive = !this.isActive
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

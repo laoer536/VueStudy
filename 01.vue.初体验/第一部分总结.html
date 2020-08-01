@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>第一部分总结</title>
+</head>
+<body>
+
+<div id="app">
+  <h2 align="center">{{topic}}</h2>
+  <ul>
+    <li style="list-style: disc"><h3>邂逅Vuejs</h3></li>
+    <ul>
+      <li><h4>认识Vuejs</h4></li>
+      <ul>
+        <li>为什么学习Vuejs</li>
+        <li>Vue的读音</li>
+        <li>Vue的渐进式</li>
+        <li>Vue的特点</li>
+        <br>
+      </ul>
+    </ul>
+
+    <ul>
+      <li><h4>安装Vue</h4></li>
+      <ul>
+        <li>CDN引入</li>
+        <li>下载引入</li>
+        <li>npm安装</li>
+        <br>
+      </ul>
+    </ul>
+
+    <ul>
+      <li><h4>Vue初体验</h4></li>
+      <ul>
+        <li>Hello Vuejs（mustache语法，体验Vue的响应式）</li>
+        <li>Vue列表展示（v-for，可以追加数组）</li>
+        <li>Vue计数器（时间监听 v-on:click）</li>
+        <br>
+      </ul>
+    </ul>
+
+    <ul>
+      <li><h4>Vue中的MVVM</h4></li>
+      <br>
+    </ul>
+
+    <ul>
+      <li><h4>创建Vue时，options可以放那些东西</h4></li>
+      <ul>
+        <li>el:</li>
+        <li>data:</li>
+        <li>methods:</li>
+        <li>生命周期函数（就是Vue做了很多事情）</li>
+        <br>
+      </ul>
+    </ul>
+  </ul>
+
+  <ul>
+    <li style="list-style: disc"><h3>插值语法</h3></li>
+    <ul>
+      <li><h4>mustache语法</h4></li>
+    </ul>
+
+    <ul>
+      <li><h4>v-once</h4></li>
+    </ul>
+
+    <ul>
+      <li><h4>v-html</h4></li>
+    </ul>
+
+    <ul>
+      <li><h4>v-text</h4></li>
+    </ul>
+
+    <ul>
+      <li><h4>v-pre</h4></li>
+    </ul>
+
+    <ul>
+      <li><h4>v-cloak:斗篷</h4></li>
+    </ul>
+  </ul>
+
+  <ul>
+    <li style="list-style: disc"><h3>动态绑定属性</h3></li>
+    <ul>
+      <li><h4>v-bind绑定基本属性</h4></li>
+      <ul><li>v-bind:src</li><li>v-bind:href</li></ul>
+    </ul>
+
+    <ul>
+      <li><h4>v-bind动态绑定class</h4></li>
+      <ul><li>对象语法：作业  v-bind:class="{类名:boolean}"</li><li>数组语法：</li></ul>
+    </ul>
+
+    <ul>
+      <li><h4>v-bind动态绑定style</h4></li>
+      <ul><li>对象语法</li><li>数组语法：</li></ul>
+    </ul>
+    </ul>
+
+  <ul>
+    <li style="list-style: disc"><h3>计算属性</h3></li>
+    <ul>
+      <li><h4>案例一：firstName+lastName</h4></li>
+    </ul>
+
+    <ul>
+      <li><h4>案例:二：books->bookPrice</h4></li>
+  </ul>
+    </ul>
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      topic:'Vue day 01'
+
+    }
+  })
+</script>
+
+</body>
+</html>

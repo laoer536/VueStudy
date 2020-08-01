@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vuejs/vue.js"></script>  <!--引入 vuejs 文档-->
+</head>
+<body>
+<div id="app">
+
+    {{message}}
+    <br>
+
+    <h2>{{message}}</h2>
+
+    <h1>{{name}}</h1>
+    <br>
+
+</div>  <!--message特殊语法显示原理：因为引用了vue，自动解析其中的语法，所以双括号＋变量即可显示-->
+
+<script>
+    const app = new Vue(    /*ES6中let定义变量const定义常量,当然也可以用常规的var定义变量*/
+        {
+            el:'#app',/* 让vue管理身份为app的div标签(参数传递给了div)/用于挂载要管理的元素/告诉vue实例你以后帮我管理谁*/
+            data:{     /*定义数据，数据的来源可以是我们定义的也可以是从服务器加载来的*/
+                message:'你好啊，刘杰！',
+                name:'刘杰'
+            }
+        }
+    ) /*创建了一个vue实例*/
+    /*好处：
+    响应式：如果服务器改变了数据例如message或者name等变量的值，div中显示的内容也会自动更改*/
+</script>
+</body>
+</html>

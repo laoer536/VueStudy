@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vuejs/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    {{message}}
+
+    <ul>           <!--创建列表-->
+        <li v-for="item in movies">{{item}}</li>   <!--列表中的项li--> <!-- Vue赋予了v-for功能，成为一个指令--> <!--数组movies中的值依次放入变量item中，并显示--> <!--比HTML5更加简洁-->
+
+    </ul>
+</div>
+<br>
+
+
+<script>
+    const app = new Vue({
+        el:'#app',
+        data:{
+            message:'刘杰是傻逼',    /*刘杰是傻逼*/
+            movies:['海王','星际穿越','大话西游','盗梦空间']   /* '海王','星际穿越','大话西游','盗梦空间'*/  /*定义了一个数组*/   /* 服务器数据 开发者者自定义都行 显示会随之改变 无需再定义 即响应式*/
+        }
+
+    })
+</script>
+
+</body>
+</html>

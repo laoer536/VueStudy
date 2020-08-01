@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn></cpn>
+
+  <cpn>
+    <!--现在我们想让第二个不那样显示-->
+    <!--<span v-for="item in pLanguages">{{item}} -</span>-->   <!--不能这样写，因为编译作用域的问题，这里的pLanguage是没有值的 需要在子组件中拿-->
+    <template slot-scope="slot">  <!--高版本Vue不用写template div也行--> <!--通过slot名字引用插槽对象-->
+      <span v-for="item in slot.data">{{item}} -</span>   <!-- 这里的data就是pLanguage-->
+    </template>
+  </cpn>
+
+  <cpn>
+    <!--改进： 用join函数 实现完美的 “-” 连接-->
+    <template slot-scope="slot">
+      <span>{{slot.data.join('-')}}</span>
+    </template>
+  </cpn>
+
+  <cpn></cpn>
+</div>
+
+<template id="cpn">
+  <!--<div>
+    <ul>
+      <li v-for="item in pLanguages">{{item}}</li>
+    </ul>
+  </div>-->
+
+  <div>
+    <slot :data="pLanguages">  <!--v-bind语法糖就是冒号-->  <!--data只是一个名字，也可以取其他的名字，不过上面引用的时候对应名字就行了-->
+      <ul>
+        <li v-for="item in pLanguages">{{item}}</li>
+      </ul>
+    </slot>
+  </div>
+</template>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    components: {
+      cpn: {
+        template : '#cpn',
+        data() {
+          return {
+            pLanguages: ['JavaScript','C++','Java','C#','Python','Go','Swift']
+          }
+        },
+        create() {
+          this.pLanguages.join('-')
+        }
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

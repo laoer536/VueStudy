@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>箭头函数也是定义函数的一种方式</title>
+</head>
+<body>
+
+<script>
+  /*定义函数的方式*/
+  const aaa = function () {
+
+  }
+
+  /*对象字面量中定义函数*/
+  const obj1 = {
+    bbb: function () {
+
+    },
+    ccc() {
+
+    }
+  }
+
+  /*ES6的箭头函数*/
+  /*const ddd = (参数列表) => {
+
+  }*/
+
+  /*没有参数*/
+  const first = () => {
+
+  }
+
+  /*放入两个参数*/
+  const sum = (sum1,sum2) => {
+    return sum1 + sum2
+  }
+
+  const plus = (x, y) => x + y  /*针对大括号里面只有一行代码的时候可以省略大括号和return*/
+
+  /*放入一个参数*/
+  const power = num => {  //只有一个参数小括号可以省略
+    return num*num   /*求平方的操作*/
+  }
+
+  /*箭头函数中的this引用的就是最近作用域中的this 向外层作用域一层一层查找this 直到有this的定义*/
+  const obj = {
+    aaa () {
+      setTimeout(function () {
+        console.log(this);  //打印的是window
+      })
+
+      setTimeout( () => {  //打印的是函数aaa作用域下的obj
+        console.log(this);
+      })
+    }
+
+
+  }
+
+  obj.aaa();
+
+  const obj3 = {
+    aaa() {
+      setTimeout(function () {
+        setTimeout(function () {
+          console.log(this)  //window
+        })
+
+        setTimeout(() => {
+          console.log(this)  //window  因为这个作用域没有用箭头函数 是有this的
+        })
+      })
+
+
+
+      setTimeout(() => {
+        setTimeout(function () {
+          console.log(this) //window
+        })
+
+        setTimeout(() => {
+          console.log(this) //object   因为这个作用域用了箭头函数 本身没有this 所以他在上一层aaa函数找  this  此时的this就是obj
+        })
+      })
+    }
+
+  }
+
+  obj3.aaa();
+
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

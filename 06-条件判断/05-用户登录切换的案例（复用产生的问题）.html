@@ -1,0 +1,28 @@
+<!DOCTYPE html>     <!--重点关注key-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <span v-if="isUser">用户账号      <!--Vue有虚拟DOM，虚拟DOM会因为考虑性能的原因复用两个span导致用户输入部分字符再切换方式时 里面的内容仍然存在-->   <!--key的存在可以解决是否可复用的问题 从而解决问题-->
+  <input type="text" key="userCount"></span>      <!--key的值——两个一样则表示可以复用 两个不一样则表示不可以复用-->
+  <span v-else>用户邮箱
+  <input type="email" key="userEmail"></span>
+  <button @click="isUser = !isUser">切换类型</button>     <!--简单理解：在上面的案例中，Vue内部会发现原来的input元素不再使用，直接作为else中的input来使用了-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      isUser: true
+    }
+  })
+</script>
+
+</body>
+</html>

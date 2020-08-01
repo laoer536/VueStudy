@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>标题</h2>
+  <p>我是内容：以偶的购房感受到hi甘肃等</p>
+  <p>我是内容：刘杰太瓜</p>
+  <p>我是内容：老二的冥想与发呆</p>
+
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>   <!--3对组件进行使用-->   <!--注意组件是在Vue中定义并注册创建的的，所以在使用时必须是在Vue作用下的div容器里面-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  //1创建组件构造器对象
+  const cpnConstructor = Vue.extend({
+    template: `
+      <div>
+          <h2>标题</h2>
+          <p>我是内容：以偶的购房感受到hi甘肃等</p>
+          <p>我是内容：刘杰太瓜</p>
+          <p>我是内容：老二的冥想与发呆</p>
+      </div>`      /*template译为模板*/    /*表示字符的还可以用tab键上面的那个键来实现，功能比普通的单引号更强大，可以自动换行整合在一起*/
+  })
+  //2注册组件
+  Vue.component('my-cpn',cpnConstructor)    /*把我们刚刚创建的名为cpnConstructor的组件构造器注册为名为my-cpn的组件，以后使用可以直接调用这个组件 减少了代码量 提高了效率*/
+  //
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    }
+  })
+</script>
+
+</body>
+</html>

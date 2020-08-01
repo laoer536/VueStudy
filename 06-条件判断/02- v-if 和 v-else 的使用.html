@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2 v-if="isShow">      <!--通过在浏览器控制台输入app.isShow=else/false 来实现对变量的修改 从而选择性的显示-->
+    <div>abc</div>
+    <div>abc</div>
+    <div>abc</div>
+    <div>abc</div>
+    <div>abc</div>
+    {{message}}
+  </h2>      <!--定义变量的方式来实现-->
+  <h1 v-else>当isShow为false时，显示我</h1>      <!--else后面不需要条件 表示的是剩余的所有情况-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊',
+      isShow:true
+    }
+  })
+</script>
+
+</body>
+</html>

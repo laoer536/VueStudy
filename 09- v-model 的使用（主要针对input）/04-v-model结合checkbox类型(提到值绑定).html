@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--checkbox单选框-->
+  <label for="agreement">
+    <input type="checkbox" id="agreement" v-model="isAgreement">同意协议
+  </label>
+  <h2>你选择的是：{{isAgreement}}</h2>
+  <button v-bind:disabled="!isAgreement">下一步</button>
+  <br>
+  <br>
+  <br>
+
+  <!--checkbox多选框-->
+  <label>
+    <input type="checkbox" value="篮球" v-model="hobbies">篮球
+    <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+    <input type="checkbox" value="乒乓球"v-model="hobbies"> 乒乓球
+    <input type="checkbox" value="排球" v-model="hobbies">排球
+  </label>
+  <h2>你选择了这些爱好：{{hobbies}}</h2>
+
+  <!--值绑定方式实现-->
+  <label v-for="item in orignHobbies" v-bind:for="item">
+    <input type="checkbox" v-bind:value="item" v-bind:id="item" v-model="hobbies">{{item}}   <!--值绑定的方式，对开始的数据不写死，而是由服务器提供 这样使应用更加灵活-->
+  </label>    <!--由于label的原因 实现多选需要按住键盘Ctrl再选择-->
+</div>    <!--总结一下就是 v-bind是实现在遍历时候的动态绑定 并使之对应 便于创建多个项 而v-model则侧重实现用户与服务器的交互功能-->
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊',
+      isAgreement: false,
+      hobbies: [] ,  /*服务器收集你选择的爱好(数组)*/
+      orignHobbies: ['篮球','羽毛球','乒乓球','棒球']
+    }
+  })
+</script>   <!--一个布尔boolean类型 一个数组类型-->
+
+</body>
+</html>

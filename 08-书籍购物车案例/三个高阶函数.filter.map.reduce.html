@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+常规的做法
+VS
+利用JS高阶函数(本身就是一个函数，所以叫高阶函数)实现简化：
+PS：高阶函数filter、map、reduce
+
+const nums = [10,20,111,222,444,40,50]
+//需求：取出里面小于100的数
+
+let newNums = []		//这里是初始化数组的操作
+for (let n of nums){
+if (n<100){
+newNums.push(n)
+}
+}
+console.log(newNums);
+VS
+filter高阶函数(有过滤的功能) : filter中的回调函数要求必须返回一个boolean值，当返回为true时，函数内部会自动将这次回调的n加入到新的数组中；当返回false时，函数内部会自动过滤掉这次的n。
+let newNum = nums.filter(function（n）{
+return n < 100  //这样n < 100就是boolean值，为真，就把n加入到数组newNums里面
+})
+console.log(newNums);
+
+//在这个基础上又有需求：将所有小于100的数字进行转化：全部乘以2
+let newNums2 = []
+for (let n of newNums) {
+newNums2.push(n*2)
+}
+console.log(newNums2);
+VS
+map高阶函数(有批量处理的功能,本意为映射)
+let newNums2 = newNums.map(function(n){
+return n*2		//把n*2加入到数组newNums2里面
+})
+console.log(newNums2);
+
+//在这个基础上又有新的需求：将所有newNums2中的数字相加
+let total = 0；
+for (let n of newNumbs2){
+total += n
+}
+console.log(total);
+VS
+reduce高阶函数(对数组中所有的内容进行汇总)：
+newNums2.reduce(function（previousValue，n）{		//传入至少两个值
+return  previousValue + n
+}, 0 )
+console.log(total)
+//假设现在newNums2 = [20,40,80,100]
+//第一次：previousValue = 0，n = 20
+//第二次：previousValue = 20，n = 40
+//第三次：previousValue = 60，n = 80
+//第四次：previousValue = 140，n = 20
+//240
+在JS里面连续定义两个名字相同的函数，在编译时，下面的函数会把上面的函数覆盖掉
+在tS（typeScript）中连续定义两个名字相同的函数，在编译时，会发生函数的重载，不会产生覆盖的情况
+
+利用高阶函数的终极写法：
+const nums = [10,20,111,222,444,40,50]
+//需求：取出里面小于100的数
+//在这个基础上又有需求：将所有小于100的数字进行转化：全部乘以2
+//在这个基础上又有新的需求：将所有newNums2中的数字相加
+
+let total = nums.filter(function(n){
+return n < 100
+}).map(function(n){
+return n*2
+}).reduce(function(previousValue,n){
+return previousValue + n
+},0)
+console.log(total)		//对一个数组进行连续操作 用“ . ”连接
+//这个终极写法就是一个函数式编程
+
+还有最终极写法：
+const nums = [10,20,111,222,444,40,50]
+//需求：取出里面小于100的数
+//在这个基础上又有需求：将所有小于100的数字进行转化：全部乘以2
+//在这个基础上又有新的需求：将所有newNums2中的数字相加
+
+let total = nums.filter( n => n < 100). map( n => n*2). reduce((pre,n) => pre +n );
+console.log(total)		// “=>” 是箭头函数
+
+</body>
+</html>

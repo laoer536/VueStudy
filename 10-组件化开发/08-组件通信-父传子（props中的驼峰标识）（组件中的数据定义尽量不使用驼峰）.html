@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn v-bind:cInfo="info"></cpn>   <!--绑定无效-->
+  <cpn v-bind:c-info="info"></cpn>    <!--绑定有效  对比发现只要是驼峰标识的大写字母在绑定的时候都要 将大写字母改写成 “-大写字母”的形式，多个的话也是如此-->
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>{{cInfo}}</h2>
+  </div>
+</template>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const cpn = {     /*创建局部组件*/
+    template: '#cpn',
+    props: {
+      cInfo: {
+        type: Object,   /*要求对象类型*/
+        default() {
+          return{}    /*返回对象类型用return*/
+        }
+      }
+    }
+  }
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      info: {
+        name: 'liujie',
+        age: 22,
+        height: 1.73
+      }
+    },
+    components: {
+      cpn
+    }
+  })
+</script>
+
+</body>
+</html>

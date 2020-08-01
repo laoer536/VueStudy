@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>const</title>
+</head>
+<body>
+
+<script>
+  /*const name = 'liujie';      const修饰的标识符被赋值之后不能修改  要报错
+  name = 'abc';*/
+
+  /*const name;      const定义标识符必须进行赋值操作，必须要有值*/
+
+
+  const obj = {     /*常量的定义是指向的对象不能修改，但是可以改变对象内部的属性*/
+    name: 'liujie',
+    age: 18,
+    height: 1.88
+  }
+
+  /*obj = {    报错写法
+
+  }*/
+  console.log(obj);
+
+  obj.name = 'laoer';
+  obj.age = 40;
+  obj.height = 1.87;
+  console.log(obj);
+
+</script>
+
+</body>
+</html>

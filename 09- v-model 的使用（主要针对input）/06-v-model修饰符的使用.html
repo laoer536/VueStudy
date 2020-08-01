@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>修饰符的使用</title>
+</head>
+<body>
+
+<div id="app">
+  <!--修饰符lazy-->
+  <input type="text" v-model.lazy="message">    <!--lazy可以让message的值在键盘敲了回车或者失去焦点后再改变 而不是之前的实时改变-->
+  <h2>{{message}}</h2>
+
+  <!--修饰符number-->
+  <input type="number" v-model.number="myAge">   <!--v-model默认情况下传入到变量 例如本例子中的myAge 的值都是string(字符串类型) 如果要求传入的必须是数字类型 则需要number修饰符-->
+  <h2>{{myAge}}-{{typeof myAge}}</h2>     <!--typeof 可以获取变量的类型-->
+
+  <!--修饰符trim-->
+  <input type="text" v-model.trim="name">   <!--trim可以自动删除输入内容两边的空格-->
+  <h2>您输入的名字：{{name}}</h2>
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊',
+      myAge: 0,
+      name: ''
+    }
+  })
+</script>
+
+</body>
+</html>

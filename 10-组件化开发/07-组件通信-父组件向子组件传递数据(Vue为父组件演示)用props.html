@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn v-bind:cmovies="movies" v-bind:cmessage="message"></cpn>   <!--传数据一定用v-bind 否则将会将movies视为字符串直接传给cmovies 从而就拿不到父亲数据 因为原因该是变量--> <!--最后调数据-->
+  <br>
+  <br>
+  <br>
+  <cpn v-bind:cmovies="movies"></cpn>   <!--显示没有电影， 因为没有用v-bind引用父组件的值 cmessage就使用默认值——'没有电影'-->
+</div>
+
+<template id="cpnC1">
+  <div>
+    <ul>
+      <li v-for="item in cmovies">{{item}}</li>
+    </ul>
+    <h2>{{cmessage}}</h2>
+  </div>
+</template>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  //父传子： props
+  const cpn = {
+    template:'#cpnC1',
+    //props: ['cmovies','cmessage'],    思考，为什么我们不用cMovies,为什么不用cMessage的驼峰命名方法(下一个HTML文件将进行解答)
+    props: {
+      //类型限制，要求我们的变量需要一个什么类型的数据——方式一
+     /* cmovies: Array,  */   /*arry译为数组*/
+     /* message: String, */     /*arry译为字符串*/
+      //.......
+
+      //提供一些默认值 , 对变量用对象定义更加深层次的要求与声明 更加细节——方式二  要求还可以是自己来定
+      cmessage: {
+        type: String,
+        default: '没有电影',
+        required: true   /*要求在(div中)使用组件时必须传入cmessage  即 <cpn v-bind:cmessage=".....">...</cpn>*/
+      },
+      //类型是对象或者数组时，默认值必须是一个函数
+      cmovies: {
+        type: Array,
+        /*default: [], 高版本Vue会报错*/  /*所以返回的是一个对象或者数组 就要用return*/
+        default(){
+          return []   /*这样写，从一定意义上来说叫初始化，初值为空*/
+        }
+      }
+    },
+    data(){
+      return {}
+    },
+  }
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'有这些电影',
+      movies: ['haiwang','laoer','liupi','aoligei']
+    },
+    components:{
+      cpn
+    }
+  })
+</script>
+
+</body>
+</html>

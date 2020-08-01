@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>{{firstName}} {{lastName}}</h2>     <!--直接拼接--> <!--语法过于繁琐，一般不采用，让HTML代码简洁-->
+  <h2>{{getFullName()}}</h2>      <!--通过定义methods-->  <!--中等使用，因为这个调用次数一般比计算属性computed多，影响性能-->  <!--methods每次都要重新计算 而computed有缓存 只要数据没有发生变化 就不会再调用-->
+  <h2>{{fullName}}</h2>      <!--通过computed-->  <!--更常用这种-->      <!--性能最高-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      firstName: 'jie',
+      lastName: 'liu'
+    },
+    methods:{
+      getFullName:function () {
+        console.log('getFullName');     /*可以显示调用getFullName函数的次数(在浏览器开发者模式中)*/
+        return this.firstName+' '+this.lastName
+      }
+    },
+    computed:{
+      fullName:function () {
+        console.log('fullName');      /*可以显示调用fullName函数的次数(在浏览器开发者模式中)*/
+        return this.firstName+' '+this.lastName
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

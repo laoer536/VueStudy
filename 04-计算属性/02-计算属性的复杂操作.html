@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>复杂操作</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>总价格:{{totalPrice}}</h2>
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      books:[
+        {bookId:110,bookName:'编程艺术',bookPrice:119},    /*编程艺术*/     /*一个数组里面放入了多个对象*/
+        {bookId:112,bookName:'代码大全',bookPrice:105},     /*代码大全*/
+        {bookId:114,bookName:'深入理解计算机原理',bookPrice:100},      /*深入理解计算机原理*/
+        {bookId:116,bookName:'现代操作系统',bookPrice:60}      /*现代操作系统*/
+      ]
+    },
+    computed:{      <!--计算属性在多次调用的时候只调用一次，而methods调用几次就会执行几次-->
+      totalPrice:function () {      /*如果是methods定义，则命名的方式就为get+属性名，级methods定义要体现实现的过程，要有动词*/
+        let result=0
+        for (let i=0;i<this.books.length;i++){
+          result +=this.books[i].bookPrice
+        }
+        return result
+      }
+    }
+  })
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <ul>
+    <li v-for="(item, index) in movies"
+        :class="{active:currentIndex == index}"
+        @click="liClick(index)">{{index}}.{{item}}</li>   <!-- 条件为真时,样式即实现--> <!--每个li在遍历的时候都会有自己的index 只是看你显不显示 {{index}}-->
+        <!--当发生点击时把点击的index(小括号里面的)传给currentIndex-->
+
+    <!--相当于：-->
+    <!--<li :class="{active: 0==currentIndex}">{{item}}</li>
+    <li :class="{active: 1==currentIndex}">{{item}}</li>
+    <li :class="{active: 2==currentIndex}">{{item}}</li>
+    <li :class="{active: 3==currentIndex}">{{item}}</li>-->
+  </ul>
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      movies: ['《老二的幸福生活》','《老二历险记》','《老二自传》','《刘杰二哈》'],
+      currentIndex: 0   /*记录到底谁准备变成红色*/  /*记录这个状态是整个方案的关键*/
+    },
+    methods:{
+      liClick(index){
+        this.currentIndex = index
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

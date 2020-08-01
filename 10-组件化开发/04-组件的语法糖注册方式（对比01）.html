@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+<my-cpn></my-cpn>
+  <cpn2></cpn2>
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  //1创建组件构造器对象
+ /* const cpnConstructor = Vue.extend()*/
+
+  //2注册组件
+  /*Vue.component('my-cpn',cpnConstructor) */   /*把我们刚刚创建的名为cpnConstructor的组件构造器注册为名为my-cpn的组件，以后使用可以直接调用这个组件 减少了代码量 提高了效率*/
+
+  //语法糖创建全局组件
+  Vue.component('my-cpn',{
+    template: `
+      <div>
+          <h2>标题</h2>
+          <p>我是内容：以偶的购房感受到hi甘肃等</p>
+          <p>我是内容：刘杰太瓜</p>
+          <p>我是内容：老二的冥想与发呆</p>
+      </div>`      /*语法糖的方式一步就完成创建构造器和注册  内部帮你做了extend*/
+  })
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    components:{
+      'cpn2':{      /*语法糖创建局部组件*/
+        template: `
+      <div>
+          <h2>标题2</h2>
+          <p>我是内容：</p>
+          <p>我是内容：</p>
+          <p>我是内容：</p>
+      </div>`
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

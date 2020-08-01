@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-show</title>
+</head>
+<body>
+
+<div id="app">
+  <h2 v-if="isShow" id="aaaa">{{message}}</h2>      <!--决定是否显示--> <!--v-if:当条件为false时，包含v-if指令元素，根本就不会存在DOM中-->
+  <h2 v-show="isShow" id="bbbb">{{message}}</h2>      <!--决定是否显示--> <!--v-show:当条件为false时，v-show只是给我们的元素添加一个行内样式  →  display:none-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message: '你好啊',
+      isShow: true
+    }
+  })
+</script>     <!--总结：①当需要在显示与隐藏之间切换很频繁时，使用v-show ②当只有一次切换时，通过使用v-if  实际中v-if用的更多-->
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <ul>
+    <li v-for="item in letters" :key="item">{{item}}</li>     <!--比不绑定key性能更高  因为有Vue 有 diff算法 key可以给每个节点做一个唯一标识-->   <!--key唯一性时可用-->  <!--key的作用主要是为了高效的更新虚拟DOM-->
+  </ul>
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      letters: ['A','B','C','D','E']
+    }
+  })
+</script>
+
+</body>
+</html>

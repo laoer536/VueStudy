@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--在遍历过程中，没有使用索引值(数组的下标值)-->
+  <ul>
+    <li v-for="item in names">{{item}}</li>     <!--需要给数组每一项取一个名字 为 item-->
+  </ul>
+
+  <!--在遍历过程中，获取索引值-->
+  <ul>
+    <li v-for="(item, index) in names">{{index+1}}.{{item}}</li>     <!--数组每一项是item   index是数组下标值-->   <!--如果index不+1, 那么序号就是从零开始的-->
+  </ul>
+
+  <ol>
+    <li v-for="item in names">{{item}}</li>     <!--需要给每一项取一个名字 为 item-->     <!--另外一种实现方法  创建ol有序列表-->
+  </ol>
+
+
+
+
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      names: ['刘杰','老二','二娃','二傻']
+    }
+  })
+</script>
+
+</body>
+</html>

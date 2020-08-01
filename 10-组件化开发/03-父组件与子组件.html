@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>父组件与子组件</title>
+
+</head>
+<body>
+
+<div id="app">
+  <cpn2></cpn2>
+  <cpn1></cpn1>   <!--无法生效，需要在Vue app下再注册一次  cpn1: cpnC1-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  //创建第一个组件构造器
+  const cpnC1= Vue.extend({
+    template: `
+      <div>
+      <h2>标题1</h2>
+          <p>我是内容：以偶的购房感受到hi甘肃等</p>
+          <p>我是内容：刘杰太瓜</p>
+          <p>我是内容：老二的冥想与发呆</p>
+      </div>
+    `
+  })
+
+  //创建第二个组件构造器
+  const cpnC2= Vue.extend({   <!--cpn1如果是在自己身体里注册的组件(就像这样)可以使用 还有如果他本身就是一个全局组件 在这里也可以使用-->
+    template: `
+      <div>
+      <h2>标题2</h2>
+          <p>我是内容：《老二历险记》</p>
+          <p>我是内容：刘杰升级打怪</p>
+          <p>我是内容：6666666</p>
+          <cpn1></cpn1>
+      </div>
+            `,
+        components:{
+          cpn1: cpnC1 /*在某一个构造器里面注册了另外一个构造器，使之成为一个组件*/ /*然后就可以在这个构造器里面使用这个组件*/  /*然后cpn2就变成了父组件 cpn1就变成了子组件*/ /*cpn1作用范围只能是在这个构造器里面*/
+        }
+    })
+
+
+  //相当于一个最底层的组件root 相当于这个例子里面的爷爷组件 哈哈哈哈 但是没有这个说法
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    components: {
+      cpn2: cpnC2   /*这里不再注册构造器1，因为已经他已经在构造器2里面注册过了*/   /*对比之前的构造器可以发现都可以定义components,从一定意义上来说，Vue实例也可以看做一个相对来说的最底层的组件*/
+    }
+  })
+</script>
+
+</body>
+</html>

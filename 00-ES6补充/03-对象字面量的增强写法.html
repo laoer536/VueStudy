@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>对象字面量的增强写法</title>
+</head>
+<body>
+
+<script>
+
+  /*const obj = new Object()      创建一个Object对象传给变量obj
+  const obj = {}    这个大括号就叫对象字面量*/
+
+  //字面量函数ES5的常规写法
+  /*name: 'laoer',
+  const obj = {
+    age: 22,
+    run: function () {
+      console.log('Be better！');
+    },
+    eat: function () {
+      console.log('Eat foot!');
+    }
+  }*/
+
+  const obj3= {     /*ES6函数的增强写法*/      /*在ES6中，以后有关函数的都可以这样简写，不过涉及到兼容问题，后面有办法解决*/
+    run(){
+
+    },
+    eat(){
+
+    }
+  };
+
+  //现在把先定义的值传到obj里面去
+  const name= 'laoer';
+  const age= 22;
+  const height= 1.85;
+
+  //ES5写法
+  const obj1= {
+    name : name,
+    age: age,
+    height: height
+  };
+  console.log(obj1);
+
+  //Es6写法
+  const obj2={      /*属性的增强写法*/
+    name,
+    age,
+    height
+  };
+  console.log(obj2);
+
+
+
+
+</script>
+
+</body>
+</html>

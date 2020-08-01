@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-on的参数问题</title>
+</head>
+<body>
+
+<div id="app">
+  <!--演示1：事件调用方法没有参数(括号可以省略)-->
+  <button @click="btn1Click">按钮1</button>
+  <button @click="btn1Click()">按钮2</button>
+
+  <!--在事件定义时，写方法省略了小括号，但是方法本身是需要一个参数的,如果函数需要参数但是没有传入，那么函数的形参为undefined-->
+  <button @click="btn2Click">按钮3</button>     <!--当用户在界面点击、拖动等其他操作的时候浏览器都会生成事件event对象,对于这种情况(没有参数)Vue会默认将浏览器生产的event事件对象作为参数传入到方法中 包括位置等等-->
+  <button @click="btn2Click()">按钮4</button>
+  <button @click="btn2Click(123)">按钮5</button>    <!--有参数-->
+
+  <!--方法定义时，我们需要event对象，又需要其他参数-->
+  <button @click="btn3Click(123,$event)">按钮6</button>      <!--在调用方式，如何手动的获取到浏览器参数的event对象: $event-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    methods:{
+      btn1Click(){      /*这个方法没有参数*/
+        console.log("btn1Click");
+      },
+      btn2Click(event){     /*要求传过来一个参数,小括号里面的内容表示参数表 */       /* 想拿到event里面的参数，那么小括号里面一定要有  不想拿就直接写一个小括号就行*/
+        console.log('--------',event);
+      },
+      btn3Click(abc,event){
+        console.log('+++++++++',abc, event);
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

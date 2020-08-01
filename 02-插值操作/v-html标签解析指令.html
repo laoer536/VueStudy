@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-html</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>{{url}}</h2>
+  <h2 v-html="url">{{url}}</h2>    <!-- v-html可以使用网页的方法来解析返回的信息是含有标签的情况-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      /*message:'你好啊',*/
+      url:'<a href="http://www.baidu.com">百度一下</a>'     /*服务器返回的是一个标签*/
+    }
+  })
+</script>
+
+</body>
+</html>

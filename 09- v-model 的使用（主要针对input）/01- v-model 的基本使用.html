@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>基本使用</title>
+</head>
+<body>
+
+<div id="app">
+  <input type="text" v-model="message">   <!--对message实现了双向绑定，message自动成为了表单属性input的value  用户和服务器都可以动态改变message的值-->
+  {{message}}
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    }
+  })
+</script>
+
+</body>
+</html>

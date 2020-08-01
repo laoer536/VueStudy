@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>数组</title>
+</head>
+<body>
+
+<div id="app">
+  <h2 class="title" v-bind:class="['active','line']">{{message}}</h2>
+  <h2 class="title" v-bind:class="[active,line]">{{message}}</h2>    <!-- 对比发现上面是当做字符串解析，下面是当做变量来解析，上面的不会被替换，下面的会被替换为aaaa,bbbb.-->
+  <h2 class="title" v-bind:class="getClasses()">{{message}}</h2>    <!--函数引用方式来实现-->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊',
+      active:'aaaa',
+      line:'bbbb'
+    },
+    methods:{
+      getClasses:function(){
+        return [this.active,this.line]
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

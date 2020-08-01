@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <ul>
+    <li v-for="item in letters">{{item}}</li>
+  </ul>
+
+  <button @click="btnClick">按钮</button>
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      letters: ['A','B','C','D']      /*控制台 app.letters.push('aaa')*/
+    },
+    methods:{
+      btnClick(){
+        //push 方法
+        /*this.letters.push('aaa') */     /*实现控制台的效果*/
+
+        //push()    在数组的最后加入一个或多个元素   小括号里面里面有内容
+        //pop()   删除数组的最后一个元素   小括号里面里面没有内容
+        //shift()   删除数组的第一个元素    小括号里面里面没有内容
+        //unshift()    在数组最前面添加一个或者多个元素   小括号里面里面有内容
+
+        //splice()      删除元素/插入元素/替换元素
+        //splice(开始位置,从开始位置开始要删除的数组元素个数) 如果第二项没有传 就删除开始位置之后的所有元素
+        //splice(开始位置,从开始位置开始要删除的数组元素个数,添加的元素)   其实就是实现替换功能
+        //splice(开始位置,0,从开始位置开始要添加的元素)    其实就是实现插入功能
+
+        //sort()    排序功能
+        //reverse()     反转数组
+                            //这些可以做到响应式
+
+        //通过索引值修改数组中的元素
+        this.letters[0] = 'bbbbbb';   /*这个不能做到响应式 界面不会改变*/
+
+        //对应方法的解决办法：可以通过Vue内部的一个set函数实现
+        Vue.set(this.letters,0,'bbbbbb')
+      }
+    }
+  })
+  /*function sum(...num){    小括号里面本来是num1,num2,num3,,,  这里用...num可变参数代替 更加简便 当值多时就用这个方法  ...都是可以传多个值
+    console.log(num);
+  }
+  sum(20,30, , , , , , , ,)*/     实现多个值相加的办法
+</script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>    <!--html从上往下解析-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-cloak</title>
+  <style>
+    [v-cloak]{
+      display: none;      /*若标签含有v-cloak属性，则不显示任何内容，如果没有这里的style后面的延迟解析会让人不舒服*/
+    }
+  </style>
+</head>
+<body>
+
+<div id="app" v-cloak>      <!--这里自定义一个v-cloak属性，同时v-cloak属性在解析Vue之前存在，在解析之后不存在，(因为Vue会删除v-cloak)，所以在解析之后才显示出来，这可以很好的证明HTML代码是从上往下解析的-->
+  {{message}}    <!-- cloak本意为斗篷 -->
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  setTimeout(function () {
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:'你好啊'
+      }
+    })
+  },1000)     /*延迟1秒解析app，模拟电脑卡了的情况*/
+
+</script>
+
+</body>
+</html>

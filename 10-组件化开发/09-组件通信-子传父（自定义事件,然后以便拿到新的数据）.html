@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--父组件模板-->
+<div id="app">
+  <cpn v-on:item-click="cpnClick"></cpn>    <!--当监听到item-click事件时，就到cpnClick函数那里去处理事件-->   <!-- cpnClick默认用item，因为传了item参数 如果没有传则用浏览器event事件-->
+</div>
+
+<!--子组件模板-->
+<template id="cpn">
+  <div>
+    <button v-for="item in categories" v-on:click="btnClick(item)">{{item.name}}</button>   <!--如果不.name则全部都要显示包括id 这样的话只显示name-->
+  </div>
+</template>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  //子组件
+  const cpn = {
+    template: '#cpn',
+    data(){
+      return{
+        categories: [     /*categories译为分类 类别*/
+          {id: 'aaa',name: '热门推荐'},
+          {id: 'bbb',name: '手机数码'},
+          {id: 'ccc',name: '家用家电'},
+          {id: 'ddd',name: '电脑办公'},
+        ]
+      }
+    },
+    methods: {
+      btnClick(item){
+        this.$emit('item-click',item)    /*item-click为我们自定义的发射事件*/   /*先不用大写c 有问题*/ /*后面发射出去还带了一个参数 item  不加则不传参数*/
+        /*console.log(item);    用这个语法可以看item是否传了过来*/
+      }
+    }
+  }
+
+  //父组件
+  const app = new Vue({
+    el:'#app',
+    data:{
+      info: {
+        name: 'liujie',
+        age: 22,
+        height: 1.73
+      }
+    },
+    components: {
+      cpn
+    },
+    methods: {
+      cpnClick(item){
+        console.log('cpnClick',item);
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

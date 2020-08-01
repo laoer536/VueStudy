@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>select</title>
+</head>
+<body>
+
+<div id="app">
+  <!--选择一个-->
+  <select name="abc" id="singleSelect" v-model="fruit">
+    <option value="葡萄">葡萄</option>
+    <option value="香蕉">香蕉</option>
+    <option value="菠萝">菠萝</option>
+    <option value="杏子">杏子</option>
+  </select>
+  <h2>你选择的水果是：{{fruit}}</h2>
+
+  <br>
+
+
+  <!--选择多个-->
+  <select name="abc" id="manySelect" v-model="fruits" multiple>   <!--id不能重复  可以选择保留或者删除--> <!--multiple属性可以使select实现多选 本意为数量多的-->  <!--此地datalist也可以-->
+    <option value="葡萄">葡萄</option>
+    <option value="香蕉">香蕉</option>
+    <option value="菠萝">菠萝</option>
+    <option value="杏子">杏子</option>
+  </select>
+  <h2>你选择的水果是：{{fruits}}</h2>
+</div>
+
+<script src="../vuejs/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      fruit: '',
+      fruits: []
+    }
+  })
+</script>   <!--字符串类型和数组类型-->
+
+</body>
+</html>
